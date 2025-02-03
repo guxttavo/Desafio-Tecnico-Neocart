@@ -27,11 +27,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { TarefaComponent } from './components/tarefa/tarefa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    TarefaComponent,
 
   ],
   imports: [

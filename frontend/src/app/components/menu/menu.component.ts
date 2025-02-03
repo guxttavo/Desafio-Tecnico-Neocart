@@ -18,20 +18,7 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
-    if (this.usuarioLogado) {
-      const usuarioLogadoId = this.usuarioId;
-      if (usuarioLogadoId) {
-        this.usuarioService.buscarUsuarioPorId(usuarioLogadoId).subscribe({
-          next: (usuario) => {
-            this.usuarioId = usuario.id;
-          }, error: (error: any) => {
-            console.error(error);
-          }
-        }
-        )
-      }
-    }
+
   }
 
   sair(): void {

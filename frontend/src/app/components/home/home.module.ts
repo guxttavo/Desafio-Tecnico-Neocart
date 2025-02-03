@@ -11,7 +11,7 @@ import { HomeComponent } from './home.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon';  // Adicione esta linha
+import { MatIconModule } from '@angular/material/icon'; 
 import { MatRadioModule } from '@angular/material/radio';
 
 const routes: Routes = [
