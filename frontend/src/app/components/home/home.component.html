@@ -1,0 +1,49 @@
+<div class="alinhamento">
+  <div class="toolbar mt-3">
+    <mat-form-field appearance="fill" class="input-pesquisa">
+      <mat-label>Pesquisar por nome</mat-label>
+      <input matInput placeholder="Pesquisar por nome" class="ms-3" [(ngModel)]="filtroNome"
+        (input)="filtrarCarros()" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="select-filtro">
+      <mat-label>Filtrar por</mat-label>
+      <mat-select class="select" [(ngModel)]="filtroCategoria" (selectionChange)="filtrarCarros()">
+        <mat-option value="">Todos</mat-option>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.nome">
+          {{ categoria.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-icon-button color="primary" (click)="filtrarCarros()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <button mat-raised-button color="primary" class="mb-3" [routerLink]="['cadastrar-carro']">
+      Cadastrar um carro
+    </button>
+  </div>
+
+  <div class="carro-list">
+    <div *ngFor="let carro of carros" class="carro-card mat-elevation-z4">
+      <div class="carro-header">
+        <h3>{{ carro.nome }} - {{ carro.ano }}</h3>
+        <p class="placa">Placa: {{ carro.placa }}</p>
+      </div>
+      <div class="carro-body">
+        <p><strong>Quilometragem:</strong> {{ carro.quilometragem }} km</p>
+        <p><strong>Valor Bruto:</strong> R$ {{ carro.valorBruto | number: '1.2-2' }}</p>
+        <p><strong>Valor Líquido:</strong> R$ {{ carro.valorLiquido | number: '1.2-2' }}</p>
+        <p><strong>Concessionária:</strong> {{ carro.concessionaria }}</p>
+        <p><strong>Categoria:</strong> {{ carro.categoria.nome }}</p>
+        <div class="buttons">
+          <!-- <button mat-raised-button color="primary" [routerLink]="['editar-carro', carro.id]">Editar</button> -->
+          <button mat-raised-button color="primary" (click)="abrirModalEditarCarro(carro)">Editar</button>
+          <button mat-stroked-button class="excluir" (click)="deletarCarro(carro.id!)">Excluir</button>
+          <button mat-outline-button class="favoritar" (click)="favoritarCarro(carro)">Favoritar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

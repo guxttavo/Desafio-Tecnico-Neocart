@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="d-flex justify-content-between align-items-center">
+  <div class="d-flex align-items-center">
+    <a mat-button [routerLink]="['/home']" class="navbar-brand">Home</a>
+    <h2 class="ms-3 mt-3 welcome-message" *ngIf="usuarioLogado">Bem vindo, {{ nomeUsuario }}</h2>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <ng-container *ngIf="!usuarioLogado">
+      <a mat-button [routerLink]="['/login']">Login</a>
+      <a mat-button [routerLink]="['/home/cadastrar-usuario']">Cadastro</a>
+    </ng-container>
+    <ng-container *ngIf="usuarioLogado">
+      <button mat-button [routerLink]="['/home/meu-perfil']">Meu Perfil</button>
+      <button mat-button (click)="sair()">Sair</button>
+    </ng-container>
+  </div>
+</mat-toolbar>
