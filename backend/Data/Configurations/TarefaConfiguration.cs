@@ -1,8 +1,8 @@
-using api.Models;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace api.Configurations
+namespace Data.Configurations
 {
     public class TarefaConfiguration : IEntityTypeConfiguration<Tarefa>
     {

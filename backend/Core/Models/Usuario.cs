@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace api.Models
+namespace Core.Models
 {
     public class Usuario
     {
@@ -9,7 +9,7 @@ namespace api.Models
         public string Email { get; set; }
         public string Senha { get; set; }
 
-
-        [JsonIgnore] 
-        public ICollection<Tarefa> Tarefas { get; set; }}
+        [JsonIgnore]
+        public ICollection<Tarefa> Tarefas { get; set; }
+    }
 }

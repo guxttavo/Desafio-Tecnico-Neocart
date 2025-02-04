@@ -1,8 +1,8 @@
-using api.Configurations;
-using api.Models;
+using Data.Configurations;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Banco
+namespace Data
 {
     public class AppDbContext : DbContext
     {

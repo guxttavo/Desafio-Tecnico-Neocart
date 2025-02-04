@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // Se tiver alterado as estruturas de destino, certifique-se de atualizar o caminho do programa.
-            "program": "${workspaceFolder}/backend/api/bin/Debug/net9.0/api.dll",
+            "program": "${workspaceFolder}/backend/bin/Debug/net9.0/api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/backend/api",
+            "cwd": "${workspaceFolder}/backend/",
             "stopAtEntry": false,
             // Habilitar a inicialização de um navegador da web quando o ASP.NET Core for iniciado. Para obter mais informações: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
