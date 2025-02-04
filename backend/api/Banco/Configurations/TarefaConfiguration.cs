@@ -8,19 +8,21 @@ namespace api.Configurations
     {
         public void Configure(EntityTypeBuilder<Tarefa> builder)
         {
-            builder.ToTable("tarefas");
+            builder.ToTable("tarefa");
 
-            builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id).HasName("pk_tarefa");
 
-            builder.Property(t => t.Descricao).IsRequired().HasMaxLength(500);
-
-            builder.Property(t => t.Status).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd().HasColumnName("id");
+            builder.Property(x => x.Nome).HasColumnName("nome");
+            builder.Property(x => x.Descricao).HasColumnName("descricao");
+            builder.Property(x => x.Data).HasColumnName("data");
+            builder.Property(t => t.Status).HasColumnName("status").HasConversion<string>(); 
+            builder.Property(x => x.UsuarioId).HasColumnName("usuario_id");
 
             builder
-                .HasOne(t => t.Usuario)
-                .WithMany(u => u.Tarefas)
-                .HasForeignKey(t => t.UsuarioId)
+                .HasOne(x => x.Usuario)
+                .WithMany(x => x.Tarefas)
+                .HasForeignKey(x => x.UsuarioId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

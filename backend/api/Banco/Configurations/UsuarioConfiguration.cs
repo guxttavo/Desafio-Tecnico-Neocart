@@ -8,18 +8,16 @@ namespace api.Configurations
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("usuarios");
+            builder.ToTable("usuario");
 
-            builder.HasKey(u => u.Id);
-            builder.Property(u => u.Id).ValueGeneratedOnAdd();
+            builder.HasKey(x => x.Id).HasName("pk_usuario");
 
-            builder.Property(u => u.Nome).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd().HasColumnName("id");
+            builder.Property(x => x.Nome).HasColumnName("nome");
+            builder.Property(x => x.Email).HasColumnName("email");
+            builder.Property(x => x.Senha).HasColumnName("senha");
 
-            builder.Property(u => u.Email).IsRequired().HasMaxLength(150);
-
-            builder.Property(u => u.Senha).IsRequired().HasMaxLength(255);
-
-            builder.HasMany(u => u.Tarefas).WithOne().OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Tarefas).WithOne(t => t.Usuario).HasForeignKey(t => t.UsuarioId);
         }
     }
 }

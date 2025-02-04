@@ -1,5 +1,3 @@
-using System;
-
 namespace api.Models
 {
     public enum StatusTarefa

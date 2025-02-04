@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace api.Models
 {
     public class Usuario
@@ -7,6 +9,7 @@ namespace api.Models
         public string Email { get; set; }
         public string Senha { get; set; }
 
-        public ICollection<Tarefa> Tarefas { get; set; }
-    }
+
+        [JsonIgnore] // Evita o loop infinito na serialização
+        public ICollection<Tarefa> Tarefas { get; set; }}
 }
