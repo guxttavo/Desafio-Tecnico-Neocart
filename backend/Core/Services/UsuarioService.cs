@@ -3,7 +3,7 @@ using Data;
 using backend.Core.Interfaces;
 
 
-namespace backend.Core.Services
+namespace backend.Core.Service
 {
     public class UsuarioService : IUsuarioService
     {

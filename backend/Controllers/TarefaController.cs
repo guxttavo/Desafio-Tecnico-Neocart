@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Data;
+using backend.Core.Interfaces;
 using Core.Models;
+using Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers
 {
@@ -9,17 +9,17 @@ namespace Controllers
     [Route("api/[controller]")]
     public class TarefaController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly ITarefaService _tarefaService;
 
-        public TarefaController(AppDbContext context)
+        public TarefaController(ITarefaService tarefaService)
         {
-            _context = context;
+            _tarefaService = tarefaService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tarefa>>> GetTarefas()
+        public async Task<ActionResult<IEnumerable<Tarefa>>> ListarTarefas()
         {
-            var tarefas = await _context.Tarefas.Include(t => t.Usuario).ToListAsync();
+            var tarefas = await _tarefaService.ListarTarefas();
 
             return Ok(tarefas);
         }
