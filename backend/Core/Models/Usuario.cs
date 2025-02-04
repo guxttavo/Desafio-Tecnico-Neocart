@@ -9,7 +9,8 @@ namespace Core.Models
         public string Email { get; set; }
         public string Senha { get; set; }
 
-        [JsonIgnore]
-        public ICollection<Tarefa> Tarefas { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] 
+        public ICollection<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
+
     }
 }

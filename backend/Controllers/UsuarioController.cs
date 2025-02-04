@@ -1,8 +1,8 @@
+using backend.Core.Interfaces;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using backend.Core.Interfaces;
 
-namespace api.Controllers
+namespace Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -15,22 +15,22 @@ namespace api.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpPost]
+        [HttpPost("cadastrarUsuario")]
         public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario usuario)
         {
             if (usuario == null)
             {
-                return BadRequest("Usuário inválido.");
+                return BadRequest(); 
             }
 
             try
             {
                 await _usuarioService.CadastrarAsync(usuario);
-                return Ok("Usuário cadastrado com sucesso.");
+                return Ok();
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro ao cadastrar usuário: {ex.Message}");
+                return StatusCode(500); 
             }
         }
     }

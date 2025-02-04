@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import iziToast from 'izitoast';
+import { usuario } from 'src/app/interfaces/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -28,7 +29,15 @@ export class CadastrarUsuarioComponent {
   cadastrarUsuario() {
     if (this.form.valid) {
       const usuario = this.form.value;
-      this.usuarioService.cadastrarUsuario(usuario).subscribe(
+
+      const objetoUsuario: usuario = {
+        nome: usuario.nome,
+        email: usuario.email,
+        senha: usuario.senha,
+      }
+      
+
+      this.usuarioService.cadastrarUsuario(objetoUsuario).subscribe(
         {
           next: () => {
             iziToast.success({
@@ -39,13 +48,6 @@ export class CadastrarUsuarioComponent {
             setTimeout(() => {
               this.router.navigate(['/home'])
             }, 3000)
-          },
-          error: () => {
-            iziToast.error({
-              title: 'Erro',
-              message: 'Ocorreu um problema ao realizar a operação!',
-              position: 'topRight'
-            });
           }
         }
       );

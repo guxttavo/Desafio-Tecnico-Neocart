@@ -1,9 +1,9 @@
-using api.Banco;
-using api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Data;
+using Core.Models;
 
-namespace api.Controllers
+namespace Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

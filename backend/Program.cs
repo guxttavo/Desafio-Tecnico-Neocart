@@ -1,8 +1,8 @@
-using api.Banco;
+using Data;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-
+using backend;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +10,7 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(
-        "PermitirTudo",
-        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
-    );
-});
+builder.Services.AddDependencies();  
 
 builder.Services.Configure<JsonOptions>(options =>
 {
@@ -24,6 +18,16 @@ builder.Services.Configure<JsonOptions>(options =>
 });
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTudo", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") 
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 

@@ -8,11 +8,12 @@ import { usuario } from '../interfaces/usuario';
 
 export class UsuarioService {
 
-  private apiUrl = 'http://localhost:5248/api/tarefa';
+  private apiUrl = 'http://localhost:5248/api/usuario/cadastrarUsuario';
 
   constructor(private http: HttpClient) { }
 
   cadastrarUsuario(usuario: usuario) {
-    return this.http.post(`${this.apiUrl + "/cadastrarUsuario"}`, usuario);
+    return this.http.post(this.apiUrl, usuario); 
   }
+  
 }
