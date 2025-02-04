@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { tarefa } from 'src/app/interfaces/tarefa';
-import { TarefaService } from 'src/app/services/tarefa-service';
+import { TarefaService } from 'src/app/services/tarefa.service';
 
 // Enum de status
 export enum Status {

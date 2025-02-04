@@ -4,7 +4,7 @@ import iziToast from 'izitoast';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { TarefaService } from 'src/app/services/tarefa-service';
+import { TarefaService } from 'src/app/services/tarefa.service';
 import { tarefa } from 'src/app/interfaces/tarefa';
 import { CadastrarTarefaComponent } from '../tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 

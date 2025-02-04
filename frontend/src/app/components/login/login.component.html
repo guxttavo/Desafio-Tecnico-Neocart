@@ -1,0 +1,28 @@
+<div class="alinhamento d-flex justify-content-center align-items-center">
+    <form [formGroup]="form" (ngSubmit)="logar()">
+        <mat-card>
+            <mat-card-header class="text-center">
+                <mat-card-title>Login</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="mb-3">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" id="email" formControlName="email" placeholder="Digite seu email">
+                    </mat-form-field>
+                </div>
+                <div class="mb-3">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" id="senha" formControlName="senha"
+                            placeholder="Digite sua senha">
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button color="primary" type="submit" class="w-100">Entrar</button>
+            </mat-card-content>
+            <mat-card-footer class="text-center">
+                <h3>Não tem conta? <a [routerLink]="['cadastrar-usuario']">Cadastre-se</a> </h3>
+            </mat-card-footer>
+        </mat-card>
+    </form>
+</div>

@@ -1,5 +1,3 @@
-import { usuario } from "./usuario";
-
 export interface tarefa {
   id: number | null;
   nome: string;
