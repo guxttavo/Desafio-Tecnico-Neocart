@@ -24,17 +24,15 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 
-
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { TarefaComponent } from './components/tarefa/tarefa.component';
+import { CadastrarTarefaComponent } from './components/tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    TarefaComponent,
-
+    CadastrarTarefaComponent,
   ],
   imports: [
     BrowserModule,

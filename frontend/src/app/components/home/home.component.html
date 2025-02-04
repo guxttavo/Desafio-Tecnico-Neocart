@@ -1,8 +1,8 @@
 <div class="alinhamento">
   <div class="toolbar mt-3">
-    <button mat-raised-button color="primary" class="mb-3" [routerLink]="['cadastrar-tarefa']">
+    <button mat-raised-button color="primary" class="mb-3" (click)="abrirModalCadastro()">
       Cadastrar uma tarefa
-    </button>
+    </button>    
   </div>
   <div class="carro-list">
     <div *ngFor="let data of tarefasPorData | keyvalue">

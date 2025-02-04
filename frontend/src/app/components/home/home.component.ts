@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TarefaService } from 'src/app/services/tarefa-service';
 import { tarefa } from 'src/app/interfaces/tarefa';
+import { CadastrarTarefaComponent } from '../tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.listarTarefas(); 
+    this.listarTarefas();
 
   }
 
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
     this.tarefaService.listarTarefa().subscribe({
       next: (tarefas) => {
         this.tarefas = tarefas.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
-        
+
         this.tarefasPorData = this.tarefas.reduce((acc, tarefa) => {
           const dataFormatada = new Date(tarefa.data).toLocaleDateString(); // Converte para string legível
           if (!acc[dataFormatada]) {
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
           acc[dataFormatada].push(tarefa);
           return acc;
         }, {} as { [key: string]: tarefa[] });
-  
+
         console.log('Tarefas organizadas por data:', this.tarefasPorData);
       },
       error: (erro) => {
@@ -61,5 +62,17 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  
+
+  abrirModalCadastro(): void {
+    const dialogRef = this.dialog.open(CadastrarTarefaComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Tarefa cadastrada:', result);
+      }
+    });
+
+  }
 }
