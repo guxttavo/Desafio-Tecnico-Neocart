@@ -13,10 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatRadioModule } from '@angular/material/radio';
+import { CadastrarUsuarioComponent } from '../usuario/cadastrar-usuario/cadastrar-usuario.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent }
+    { path: 'home', component: HomeComponent },
+    { path: 'cadastrar-usuario', component: CadastrarUsuarioComponent },
+
 ];
 
 @NgModule({

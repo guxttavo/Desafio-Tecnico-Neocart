@@ -27,12 +27,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CadastrarTarefaComponent } from './components/tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
+import { CadastrarUsuarioComponent } from './components/usuario/cadastrar-usuario/cadastrar-usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     CadastrarTarefaComponent,
+    CadastrarUsuarioComponent
   ],
   imports: [
     BrowserModule,
