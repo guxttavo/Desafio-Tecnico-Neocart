@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j5uMO/jYdS8=",
+  "dgSpecHash": "d/pizBSRfKk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gustavo\\Desktop\\Desafio-Neocard\\backend\\api\\api.csproj",
+  "projectFilePath": "C:\\Users\\Gustavo\\Desktop\\Desafio-Tecnico-Neocart\\backend\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",

@@ -755,11 +755,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gustavo\\Desktop\\Desafio-Neocard\\backend\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\Gustavo\\Desktop\\Desafio-Tecnico-Neocart\\backend\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\Users\\Gustavo\\Desktop\\Desafio-Neocard\\backend\\api\\api.csproj",
+      "projectPath": "C:\\Users\\Gustavo\\Desktop\\Desafio-Tecnico-Neocart\\backend\\api.csproj",
       "packagesPath": "C:\\Users\\Gustavo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gustavo\\Desktop\\Desafio-Neocard\\backend\\api\\obj\\",
+      "outputPath": "C:\\Users\\Gustavo\\Desktop\\Desafio-Tecnico-Neocart\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
