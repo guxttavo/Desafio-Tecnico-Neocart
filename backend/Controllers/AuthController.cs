@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using backend.Core.DTO;
 using Core.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,19 @@ namespace backend.Controllers
         private readonly SignInManager<Usuario> _signInManager;
         private readonly IConfiguration _config;
 
+        public AuthController(
+            UserManager<Usuario> usuarioManager,
+            SignInManager<Usuario> signInManager,
+            IConfiguration config
+        )
+        {
+            _usuarioManager = usuarioManager;
+            _signInManager = signInManager;
+            _config = config;
+        }
+
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] Usuario model)
+        public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
             var usuario = await _usuarioManager.FindByEmailAsync(model.Email);
             if (usuario == null)
@@ -28,7 +40,7 @@ namespace backend.Controllers
                 return Unauthorized("Usuário ou senha inválidos.");
 
             var token = GenerateJwtToken(usuario);
-            return Ok(new { token });
+            return Ok(new { token = token, usuarioId = usuario.Id, });
         }
 
         private string GenerateJwtToken(Usuario usuario)

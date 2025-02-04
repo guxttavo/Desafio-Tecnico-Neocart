@@ -65,19 +65,22 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200")
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials();
+                .WithOrigins("http://localhost:4200") // Permite apenas requisições do frontend
+                .AllowAnyHeader() // Permite qualquer cabeçalho
+                .AllowAnyMethod() // Permite qualquer método (GET, POST, etc.)
+                .AllowCredentials(); // Permite credenciais (cookies, headers de autenticação, etc.)
         }
     );
 });
 
 var app = builder.Build();
 
+app.UseCors("PermitirTudo");
+
 app.UseHttpsRedirection();
 
-app.UseCors("PermitirTudo");
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

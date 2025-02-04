@@ -35,15 +35,8 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.form.value.email, this.form.value.senha).subscribe({
         next: () => {
           this.usuarioLogado = false;
-          this.router.navigate(['/home']).then(() => { 
+          this.router.navigate(['/home']).then(() => {
             window.location.reload();
-          });
-        },
-        error: () => {
-          iziToast.error({
-            title: 'Erro',
-            message: 'Erro ao realizar login!',
-            position: 'topRight'
           });
         }
       });

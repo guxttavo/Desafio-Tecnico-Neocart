@@ -17,7 +17,7 @@ namespace Core.Models
         public DateTime Data { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public StatusTarefa Status { get; set; }
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
     }
 }

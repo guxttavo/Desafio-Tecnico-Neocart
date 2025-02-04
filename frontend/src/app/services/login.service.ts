@@ -9,17 +9,16 @@ import { Observable, tap } from 'rxjs';
 
 export class loginService {
 
-    private apiUrl = 'http://localhost:5248/api/auth';
+    private apiUrl = 'http://localhost:5248/api/auth/login';
     usuarioLogado: boolean = false;
 
     constructor(private http: HttpClient) { }
 
-    login(email: string, senha: string): Observable<login> {
-        return this.http.post<login>(this.apiUrl + "/login", { email, senha }).pipe(
+    login(Email: string, Senha: string): Observable<login> {
+        return this.http.post<login>(this.apiUrl, { Email, Senha }).pipe(
             tap((value) => {
                 sessionStorage.setItem("auth-token", value.token);
                 sessionStorage.setItem("usuario-id", value.usuarioId.toString())
-                sessionStorage.setItem("usuario-nome", value.nome)
                 this.usuarioLogado = true;
             }
             )

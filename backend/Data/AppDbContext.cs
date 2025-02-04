@@ -1,7 +1,7 @@
-using Data.Configurations;
 using Core.Models;
-using Microsoft.EntityFrameworkCore;
+using Data.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
@@ -15,6 +15,8 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); 
+
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new TarefaConfiguration());
         }
