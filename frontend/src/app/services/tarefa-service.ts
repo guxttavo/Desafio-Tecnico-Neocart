@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tarefa } from '../interfaces/tarefa';
-import { HttpClient } from '@angular/common/http'; // Importa o HttpClient
-
+import { HttpClient } from '@angular/common/http'; 
 @Injectable({
     providedIn: 'root'
 })

@@ -1,8 +1,8 @@
 using api.Banco;
-using api.Models;
+using api.DTO;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers
 {
     [ApiController]
@@ -17,9 +17,19 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tarefa>>> GetTarefas()
+        public async Task<ActionResult<IEnumerable<TarefaDTO>>> GetTarefas()
         {
-            var tarefas = await _context.Tarefas.Include(t => t.Usuario).ToListAsync();
+            var tarefas = await _context
+                .Tarefas.Select(
+                    t =>
+                        new TarefaDTO
+                        {
+                            Id = t.Id,
+                            Nome = t.Nome,
+                            Descricao = t.Descricao
+                        }
+                )
+                .ToListAsync();
 
             return Ok(tarefas);
         }
