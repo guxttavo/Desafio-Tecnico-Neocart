@@ -104,10 +104,6 @@ button.mat-outline-button:hover {
 }
 
 .carro-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: flex-start;
 }
 
 @media (max-width: 768px) {

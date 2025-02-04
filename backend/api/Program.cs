@@ -1,20 +1,26 @@
 using api.Banco;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração do banco de dados
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// Configuração do CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("PermitirTudo",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+    options.AddPolicy(
+        "PermitirTudo",
+        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+    );
+});
+
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
 builder.Services.AddControllers();
@@ -23,7 +29,6 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-// Aplicação do CORS antes dos controllers
 app.UseCors("PermitirTudo");
 
 app.MapControllers();

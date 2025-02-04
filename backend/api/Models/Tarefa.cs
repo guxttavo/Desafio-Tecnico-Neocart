@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace api.Models
 {
     public enum StatusTarefa
@@ -13,6 +15,7 @@ namespace api.Models
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public DateTime Data { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public StatusTarefa Status { get; set; }
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }

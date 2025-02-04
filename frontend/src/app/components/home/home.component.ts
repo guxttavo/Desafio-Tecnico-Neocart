@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   tarefas: tarefa[] = [];
 
+  tarefasPorData: { [key: string]: tarefa[] } = {};
+
   constructor(
     public dialog: MatDialog,
     public tarefaService: TarefaService,
@@ -37,11 +39,21 @@ export class HomeComponent implements OnInit {
   listarTarefas(): void {
     this.tarefaService.listarTarefa().subscribe({
       next: (tarefas) => {
-        this.tarefas = tarefas; 
-        console.log('Tarefas carregadas:', this.tarefas); 
+        this.tarefas = tarefas.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
+        
+        this.tarefasPorData = this.tarefas.reduce((acc, tarefa) => {
+          const dataFormatada = new Date(tarefa.data).toLocaleDateString(); // Converte para string legível
+          if (!acc[dataFormatada]) {
+            acc[dataFormatada] = [];
+          }
+          acc[dataFormatada].push(tarefa);
+          return acc;
+        }, {} as { [key: string]: tarefa[] });
+  
+        console.log('Tarefas organizadas por data:', this.tarefasPorData);
       },
       error: (erro) => {
-        console.error('Erro ao carregar tarefas:', erro); 
+        console.error('Erro ao carregar tarefas:', erro);
         iziToast.error({
           title: 'Erro',
           message: 'Não foi possível carregar as tarefas.',
@@ -49,4 +61,5 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  
 }

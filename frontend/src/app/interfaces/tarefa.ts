@@ -1,3 +1,5 @@
+import { usuario } from "./usuario";
+
 export interface tarefa {
     id: number;
     nome: string;
@@ -5,5 +7,5 @@ export interface tarefa {
     data: string; 
     status: 'Pendente' | 'EmAndamento' | 'Concluida'; 
     usuarioId: number;
-    // usuario: Usuario; 
+    usuario: usuario;
   }

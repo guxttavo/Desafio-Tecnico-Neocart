@@ -10,6 +10,6 @@ namespace api.Models
         public string Senha { get; set; }
 
 
-        [JsonIgnore] // Evita o loop infinito na serialização
+        [JsonIgnore] 
         public ICollection<Tarefa> Tarefas { get; set; }}
 }
