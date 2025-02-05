@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
       if (usuarioLogadoId) {
         this.usuarioService.buscarUsuarioPorId(usuarioLogadoId).subscribe({
           next: (usuario) => {
-            this.usuarioId = usuario.id ?? null; 
+            this.usuarioId = usuario.id ?? null;
           }, error: (error: any) => {
             console.error(error);
           }
@@ -34,7 +34,6 @@ export class MenuComponent implements OnInit {
         )
       }
     }
-
   }
 
   sair(): void {

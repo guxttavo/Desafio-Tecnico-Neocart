@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class TarefaService {
 
-    private apiUrl = 'http://localhost:5248/api/tarefa';
+    private apiUrl = 'http://localhost:5248/api/Tarefa';
 
     constructor(private http: HttpClient) { }
 

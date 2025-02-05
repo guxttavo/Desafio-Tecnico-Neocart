@@ -4,7 +4,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { tarefa } from 'src/app/interfaces/tarefa';
 import { TarefaService } from 'src/app/services/tarefa.service';
 
-// Enum de status
 export enum Status {
   Pendente = 'Pendente',
   EmAndamento = 'Em Andamento',
@@ -19,7 +18,7 @@ export enum Status {
 export class CadastrarTarefaComponent {
   form: FormGroup;
   statusEnum = Object.values(Status);
-  usuarioId: number = 1;
+  usuarioId = Number(sessionStorage.getItem("usuario-id"));
 
   constructor(
     private dialogRef: MatDialogRef<CadastrarTarefaComponent>,
@@ -40,18 +39,18 @@ export class CadastrarTarefaComponent {
       const tarefa = this.form.value;
 
       const objetoTarefa: tarefa = {
-        id: null,
         nome: tarefa.nome,
         descricao: tarefa.descricao,
-        data: tarefa.data,
+        data: new Date(tarefa.data).toISOString(),
         status: tarefa.status,
-        usuarioId : tarefa.usuarioId
+        usuarioId: this.usuarioId
       }
 
       this.tarefaService.cadastrarTarefa(objetoTarefa).subscribe({
         next: (response) => {
           console.log('Tarefa cadastrada com sucesso:', response);
           this.dialogRef.close(tarefa);
+          window.location.reload();
         },
         error: (error) => {
           console.error('Erro ao cadastrar tarefa:', error);

@@ -1,6 +1,6 @@
+using backend.Core.Interfaces;
 using Core.Models;
 using Data;
-using backend.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Core.Service
@@ -17,6 +17,13 @@ namespace backend.Core.Service
         public async Task<List<Tarefa>> ListarTarefas()
         {
             return await _context.Tarefas.ToListAsync();
+        }
+
+        public async Task<Tarefa> CadastrarTarefa(Tarefa tarefa)
+        {
+            _context.Tarefas.Add(tarefa);
+            await _context.SaveChangesAsync();
+            return tarefa;
         }
     }
 }
