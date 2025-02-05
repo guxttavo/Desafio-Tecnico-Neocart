@@ -42,8 +42,7 @@ namespace backend.Core.Service
             tarefaExistente.Data = tarefa.Data;
             tarefaExistente.Status = tarefa.Status;
 
-            tarefa.Data = DateTime.SpecifyKind(tarefa.Data, DateTimeKind.Utc);
-            _context.Tarefas.Update(tarefa);
+            tarefaExistente.Data = DateTime.SpecifyKind(tarefa.Data, DateTimeKind.Utc);
             await _context.SaveChangesAsync();
 
             return tarefaExistente;

@@ -62,10 +62,9 @@ export class EditarTarefaComponent implements OnInit {
 
   formatarData(data: string): string {
     if (!data) return '';
-    const dataObj = new Date(data); 
-    return dataObj.toISOString().split('T')[0]; 
+    const dataObj = new Date(data);
+    return dataObj.toISOString().split('T')[0];
   }
-
 
   salvarTarefa(): void {
     if (this.form.valid) {
