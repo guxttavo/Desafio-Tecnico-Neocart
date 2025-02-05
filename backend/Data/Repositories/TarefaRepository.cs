@@ -1,9 +1,8 @@
 using backend.Core.Interfaces.Repositories;
 using backend.Core.Models;
-using Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Repositories
+namespace Data.Repositories
 {
     public class TarefaRepository : ITarefaRepository
     {

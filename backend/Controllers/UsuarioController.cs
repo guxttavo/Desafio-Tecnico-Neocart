@@ -23,8 +23,8 @@ namespace Controllers
 
             try
             {
-                await _usuarioService.CadastrarAsync(usuario);
-                return Ok("Usuário cadastrado com sucesso.");
+                await _usuarioService.CadastrarUsuarioAsync(usuario);
+                return Ok();
             }
             catch (Exception ex)
             {

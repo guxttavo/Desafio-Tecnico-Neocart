@@ -1,11 +1,11 @@
 using backend.Core.Models;
 
-namespace backend.Core.Interfaces
+namespace backend.Core.Interfaces.Repositories
 {
-    public interface IUsuarioService
+    public interface IUsuarioRepository
     {
         Task CadastrarUsuarioAsync(Usuario usuario);
         Task<Usuario> BuscarUsuarioPorEmailAsync(string email);
-        Task<Usuario> BuscarUsuarioPorIdAsync(int id); 
+        Task<Usuario> BuscarUsuarioPorIdAsync(int id);
     }
 }

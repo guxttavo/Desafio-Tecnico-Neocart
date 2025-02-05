@@ -1,38 +1,31 @@
 using backend.Core.Interfaces;
-using Data;
-using Microsoft.EntityFrameworkCore;
+using backend.Core.Interfaces.Repositories;
 using backend.Core.Models;
 
 namespace backend.Core.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly AppDbContext _context;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public UsuarioService(AppDbContext context)
+        public UsuarioService(IUsuarioRepository usuarioRepository)
         {
-            _context = context;
+            _usuarioRepository = usuarioRepository;
         }
 
-        public async Task CadastrarAsync(Usuario usuario)
+        public async Task CadastrarUsuarioAsync(Usuario usuario)
         {
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
+            await _usuarioRepository.CadastrarUsuarioAsync(usuario);
         }
 
         public async Task<Usuario?> BuscarUsuarioPorEmailAsync(string email)
         {
-            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+            return await _usuarioRepository.BuscarUsuarioPorEmailAsync(email);
         }
 
-        public async Task<Usuario> BuscarUsuarioPorIdAsync(int id)
+        public async Task<Usuario?> BuscarUsuarioPorIdAsync(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
-            {
-                throw new Exception("Usuário não encontrado");
-            }
-            return usuario;
+            return await _usuarioRepository.BuscarUsuarioPorIdAsync(id);
         }
     }
 }
