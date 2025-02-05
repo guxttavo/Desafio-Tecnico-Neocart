@@ -1,7 +1,7 @@
+using backend.Core.Interfaces;
 using Core.Models;
 using Data;
-using backend.Core.Interfaces;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Core.Service
 {
@@ -18,6 +18,11 @@ namespace backend.Core.Service
         {
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Usuario?> BuscarUsuarioPorEmailAsync(string email)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }

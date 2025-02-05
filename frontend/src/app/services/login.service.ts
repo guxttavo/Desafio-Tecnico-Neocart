@@ -6,7 +6,6 @@ import { Observable, tap } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-
 export class loginService {
 
     private apiUrl = 'http://localhost:5248/api/auth/login';
@@ -18,10 +17,10 @@ export class loginService {
         return this.http.post<login>(this.apiUrl, { Email, Senha }).pipe(
             tap((value) => {
                 sessionStorage.setItem("auth-token", value.token);
-                sessionStorage.setItem("usuario-id", value.usuarioId.toString())
+                sessionStorage.setItem("usuario-id", value.usuario.id.toString());
+                sessionStorage.setItem("usuario-nome", value.usuario.nome);
                 this.usuarioLogado = true;
-            }
-            )
+            })
         );
     }
 }

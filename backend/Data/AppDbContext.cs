@@ -1,11 +1,11 @@
-using Core.Models;
 using Data.Configurations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Data
 {
-    public class AppDbContext : IdentityDbContext<Usuario>
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
@@ -15,8 +15,6 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); 
-
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new TarefaConfiguration());
         }

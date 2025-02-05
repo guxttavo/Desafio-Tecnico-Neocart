@@ -2,8 +2,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using backend.Core.DTO;
+using backend.Core.Interfaces;
+using backend.Core.Services;
 using Core.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -13,56 +14,26 @@ namespace backend.Controllers
     [Route("api/auth")]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<Usuario> _usuarioManager;
-        private readonly SignInManager<Usuario> _signInManager;
-        private readonly IConfiguration _config;
+        private readonly TokenService _tokenService;
+        private readonly IUsuarioService _usuarioService;
 
-        public AuthController(
-            UserManager<Usuario> usuarioManager,
-            SignInManager<Usuario> signInManager,
-            IConfiguration config
-        )
+        public AuthController(TokenService tokenService, IUsuarioService usuarioService)
         {
-            _usuarioManager = usuarioManager;
-            _signInManager = signInManager;
-            _config = config;
+            _tokenService = tokenService;
+            _usuarioService = usuarioService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            var usuario = await _usuarioManager.FindByEmailAsync(model.Email);
-            if (usuario == null)
-                return Unauthorized("Usuário ou senha inválidos.");
+            var usuario = await _usuarioService.BuscarUsuarioPorEmailAsync(model.Email);
 
-            var result = await _signInManager.CheckPasswordSignInAsync(usuario, model.Senha, false);
-            if (!result.Succeeded)
-                return Unauthorized("Usuário ou senha inválidos.");
+            if (usuario == null || usuario.Senha != model.Senha)
+                return Unauthorized(new { message = "E-mail ou senha inválidos." });
 
-            var token = GenerateJwtToken(usuario);
-            return Ok(new { token = token, usuarioId = usuario.Id, });
-        }
+            var token = _tokenService.Generate(usuario);
 
-        private string GenerateJwtToken(Usuario usuario)
-        {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, usuario.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-
-            var token = new JwtSecurityToken(
-                _config["Jwt:Issuer"],
-                _config["Jwt:Issuer"],
-                claims,
-                expires: DateTime.UtcNow.AddHours(2),
-                signingCredentials: creds
-            );
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return Ok(new { token, usuario = new { usuario.Id, usuario.Nome } });
         }
     }
 }
