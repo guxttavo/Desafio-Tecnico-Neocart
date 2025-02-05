@@ -19,18 +19,16 @@ namespace Controllers
         public async Task<IActionResult> CadastrarUsuario([FromBody] Usuario usuario)
         {
             if (usuario == null)
-            {
-                return BadRequest();
-            }
+                return BadRequest("Os dados do usuário são inválidos.");
 
             try
             {
                 await _usuarioService.CadastrarAsync(usuario);
-                return Ok();
+                return Ok("Usuário cadastrado com sucesso.");
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, "Erro interno ao cadastrar usuário.");
             }
         }
 
@@ -44,7 +42,7 @@ namespace Controllers
             }
             catch (Exception ex)
             {
-                return NotFound(new { message = ex.Message });
+                return StatusCode(500, "Erro interno ao buscar usuário.");
             }
         }
     }

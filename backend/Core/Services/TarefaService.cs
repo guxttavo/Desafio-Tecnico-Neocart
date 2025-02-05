@@ -1,62 +1,41 @@
 using backend.Core.Interfaces;
+using backend.Core.Interfaces.Repositories;
 using backend.Core.Models;
-using Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace backend.Core.Services
 {
     public class TarefaService : ITarefaService
     {
-        private readonly AppDbContext _context;
+        private readonly ITarefaRepository _tarefaRepository;
 
-        public TarefaService(AppDbContext context)
+        public TarefaService(ITarefaRepository tarefaRepository)
         {
-            _context = context;
+            _tarefaRepository = tarefaRepository;
         }
 
         public async Task<List<Tarefa>> ListarTarefas()
         {
-            return await _context.Tarefas.ToListAsync();
+            return await _tarefaRepository.ListarTarefas();
         }
 
         public async Task<Tarefa> CadastrarTarefa(Tarefa tarefa)
         {
-            _context.Tarefas.Add(tarefa);
-            await _context.SaveChangesAsync();
-            return tarefa;
+            return await _tarefaRepository.CadastrarTarefa(tarefa);
         }
 
         public async Task<Tarefa> BuscarTarefaPorId(int id)
         {
-            return await _context.Tarefas.FindAsync(id);
+            return await _tarefaRepository.BuscarTarefaPorId(id);
         }
 
         public async Task<Tarefa> EditarTarefa(Tarefa tarefa)
         {
-            var tarefaExistente = await _context.Tarefas.FindAsync(tarefa.Id);
-            if (tarefaExistente == null)
-                return null;
-
-            tarefaExistente.Nome = tarefa.Nome;
-            tarefaExistente.Descricao = tarefa.Descricao;
-            tarefaExistente.Data = tarefa.Data;
-            tarefaExistente.Status = tarefa.Status;
-
-            tarefaExistente.Data = DateTime.SpecifyKind(tarefa.Data, DateTimeKind.Utc);
-            await _context.SaveChangesAsync();
-
-            return tarefaExistente;
+            return await _tarefaRepository.EditarTarefa(tarefa);
         }
 
         public async Task<bool> ExcluirTarefa(int id)
         {
-            var tarefa = await _context.Tarefas.FindAsync(id);
-            if (tarefa == null)
-                return false;
-
-            _context.Tarefas.Remove(tarefa);
-            await _context.SaveChangesAsync();
-            return true;
+            return await _tarefaRepository.ExcluirTarefa(id);
         }
     }
 }

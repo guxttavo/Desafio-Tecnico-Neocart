@@ -1,6 +1,8 @@
 using backend.Core.Interfaces;
+using backend.Core.Interfaces.Repositories;
 using backend.Core.Services;
 using Data;
+using Repositories;
 
 namespace backend
 {
@@ -12,6 +14,7 @@ namespace backend
 
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ITarefaService, TarefaService>();
+            services.AddScoped<ITarefaRepository, TarefaRepository>();
         }
     }
 }
