@@ -1,9 +1,9 @@
 using backend.Core.Interfaces;
-using Core.Models;
 using Data;
 using Microsoft.EntityFrameworkCore;
+using backend.Core.Models;
 
-namespace backend.Core.Service
+namespace backend.Core.Services
 {
     public class UsuarioService : IUsuarioService
     {

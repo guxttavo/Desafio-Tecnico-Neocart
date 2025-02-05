@@ -1,9 +1,9 @@
 using backend.Core.Interfaces;
-using Core.Models;
+using backend.Core.Models;
 using Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace backend.Core.Service
+namespace backend.Core.Services
 {
     public class TarefaService : ITarefaService
     {

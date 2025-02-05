@@ -1,5 +1,5 @@
 using backend.Core.Interfaces;
-using Core.Models;
+using backend.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers

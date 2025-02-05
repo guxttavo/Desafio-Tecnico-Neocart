@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using backend;
-using backend.Core.Services;
+using backend.Core.Models;
+using backend.Core.Service;
 using Data;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
@@ -29,9 +30,9 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200") 
-                .AllowAnyHeader() 
-                .AllowAnyMethod() 
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
                 .AllowCredentials();
         }
     );

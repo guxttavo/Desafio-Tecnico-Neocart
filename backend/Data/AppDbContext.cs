@@ -1,6 +1,6 @@
-using Data.Configurations;
-using Core.Models;
+using backend.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using backend.Data.Configurations;
 
 namespace Data
 {

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Core.Models
+namespace backend.Core.Models
 {
     public class Usuario
     {
