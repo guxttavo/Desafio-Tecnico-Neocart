@@ -1,88 +1,98 @@
 <div class="alinhamento">
-  <div class="toolbar mt-3">
+  <div *ngIf="usuarioLogado" class="toolbar mt-3">
     <button mat-raised-button color="primary" class="mb-3" (click)="abrirModalCadastro()">
       Cadastrar uma tarefa
     </button>
   </div>
 
-  <!-- Tarefas Pendentes -->
-  <div class="carro-list">
-    <h2>Tarefas Pendentes</h2>
-    <div *ngFor="let tarefa of tarefasPendentes" class="carro-card mat-elevation-z4">
-      <div class="carro-header">
-        <h2>{{ tarefa.nome }}</h2>
-        <h3>{{ tarefa.status }}</h3>
+  <!-- Verifica se o usuário está logado -->
+  <div *ngIf="usuarioLogado; else notLoggedIn">
+    <!-- Tarefas Pendentes -->
+    <div class="carro-list">
+      <h2>Tarefas Pendentes</h2>
+      <div *ngFor="let tarefa of tarefasPendentes" class="carro-card mat-elevation-z4">
+        <div class="carro-header">
+          <h2>{{ tarefa.nome }}</h2>
+          <h3>{{ tarefa.status }}</h3>
+        </div>
+        <div class="carro-body">
+          <div>
+            <strong>Prazo:</strong> {{ tarefa.data | date:'dd/MM/yyyy' }}
+          </div>
+          <div>
+            <strong>Descrição:</strong> {{ tarefa.descricao }}
+          </div>
+          <div class="buttons">
+            <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
+            <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
+              (click)="excluirTarefa(tarefa.id)">
+              Excluir
+            </button>
+            <button mat-outline-button class="favoritar">Favoritar</button>
+          </div>
+        </div>
       </div>
-      <div class="carro-body">
-        <div>
-          <strong>Prazo:</strong> {{ tarefa.data | date:'dd/MM/yyyy' }}
+    </div>
+
+    <!-- Tarefas em Andamento -->
+    <div class="carro-list">
+      <h2>Tarefas em Andamento</h2>
+      <div *ngFor="let tarefa of tarefasEmAndamento" class="carro-card mat-elevation-z4">
+        <div class="carro-header">
+          <h2>{{ tarefa.nome }}</h2>
+          <h3>{{ tarefa.status }}</h3>
         </div>
-        <div>
-          <strong>Descrição:</strong> {{ tarefa.descricao }}
+        <div class="carro-body">
+          <div>
+            <strong>Prazo:</strong> {{ tarefa.data | date:'dd/MM/yyyy' }}
+          </div>
+          <div>
+            <strong>Descrição:</strong> {{ tarefa.descricao }}
+          </div>
+          <div class="buttons">
+            <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
+            <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
+              (click)="excluirTarefa(tarefa.id)">
+              Excluir
+            </button>
+            <button mat-outline-button class="favoritar">Favoritar</button>
+          </div>
         </div>
-        <div class="buttons">
-          <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
-          <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
-            (click)="excluirTarefa(tarefa.id)">
-            Excluir
-          </button>
-          <button mat-outline-button class="favoritar">Favoritar</button>
+      </div>
+    </div>
+
+    <!-- Tarefas Concluídas -->
+    <div class="carro-list">
+      <h2>Tarefas Concluídas</h2>
+      <div *ngFor="let tarefa of tarefasConcluidas" class="carro-card mat-elevation-z4">
+        <div class="carro-header">
+          <h2>{{ tarefa.nome }}</h2>
+          <h3>{{ tarefa.status }}</h3>
+        </div>
+        <div class="carro-body">
+          <div>
+            <strong>Prazo:</strong> {{ tarefa.data | date:'dd/MM/yyyy' }}
+          </div>
+          <div>
+            <strong>Descrição:</strong> {{ tarefa.descricao }}
+          </div>
+          <div class="buttons">
+            <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
+            <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
+              (click)="excluirTarefa(tarefa.id)">
+              Excluir
+            </button>
+            <button mat-outline-button class="favoritar">Favoritar</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Tarefas em Andamento -->
-  <div class="carro-list">
-    <h2>Tarefas em Andamento</h2>
-    <div *ngFor="let tarefa of tarefasEmAndamento" class="carro-card mat-elevation-z4">
-      <div class="carro-header">
-        <h2>{{ tarefa.nome }}</h2>
-        <h3>{{ tarefa.status }}</h3>
-      </div>
-      <div class="carro-body">
-        <div>
-          <strong>Prazo:</strong> {{ tarefa.data | date:'dd/MM/yyyy' }}
-        </div>
-        <div>
-          <strong>Descrição:</strong> {{ tarefa.descricao }}
-        </div>
-        <div class="buttons">
-          <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
-          <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
-            (click)="excluirTarefa(tarefa.id)">
-            Excluir
-          </button>
-          <button mat-outline-button class="favoritar">Favoritar</button>
-        </div>
-      </div>
+  <!-- Caso o usuário não esteja logado -->
+  <ng-template #notLoggedIn>
+    <div class="alerta">
+      <h1>Para ver e cadastrar suas tarefas você precisa estar logado!</h1>
     </div>
-  </div>
-
-  <!-- Tarefas Concluídas -->
-  <div class="carro-list">
-    <h2>Tarefas Concluídas</h2>
-    <div *ngFor="let tarefa of tarefasConcluidas" class="carro-card mat-elevation-z4">
-      <div class="carro-header">
-        <h2>{{ tarefa.nome }}</h2>
-        <h3>{{ tarefa.status }}</h3>
-      </div>
-      <div class="carro-body">
-        <div>
-          <strong>Prazo:</strong> {{ tarefa.data | date:'dd/MM/yyyy' }}
-        </div>
-        <div>
-          <strong>Descrição:</strong> {{ tarefa.descricao }}
-        </div>
-        <div class="buttons">
-          <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
-          <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
-            (click)="excluirTarefa(tarefa.id)">
-            Excluir
-          </button>
-          <button mat-outline-button class="favoritar">Favoritar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  </ng-template>
 </div>

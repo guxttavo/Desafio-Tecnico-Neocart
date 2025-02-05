@@ -1,12 +1,7 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using backend.Core.DTO;
 using backend.Core.Interfaces;
 using backend.Core.Services;
-using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace backend.Controllers
 {

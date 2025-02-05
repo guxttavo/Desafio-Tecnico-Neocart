@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TarefaService } from 'src/app/services/tarefa.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { tarefa } from 'src/app/interfaces/tarefa';
 import { CadastrarTarefaComponent } from '../tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 import { EditarTarefaComponent } from '../tarefa/editar-tarefa/editar-tarefa.component';
@@ -27,12 +28,16 @@ export class HomeComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public tarefaService: TarefaService,
+    public usuarioService: UsuarioService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-    this.listarTarefas();
+    this.usuarioLogado = this.usuarioService.usuarioLogado();
+    if (this.usuarioLogado) {
+      this.listarTarefas();
+    }
   }
 
   initializeForm() {
@@ -48,7 +53,7 @@ export class HomeComponent implements OnInit {
           });
           return;
         }
-        
+
         this.tarefas = tarefas;
         this.tarefasPendentes = tarefas.filter(tarefa => tarefa.status === 'Pendente');
         this.tarefasEmAndamento = tarefas.filter(tarefa => tarefa.status === 'EmAndamento');
