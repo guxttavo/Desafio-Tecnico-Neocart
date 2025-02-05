@@ -38,13 +38,16 @@ export class CadastrarTarefaComponent {
     if (this.form.valid) {
       const tarefa = this.form.value;
 
+      let dataCorrigida = new Date(tarefa.data);
+      dataCorrigida.setDate(dataCorrigida.getDate() + 1);
+
       const objetoTarefa: tarefa = {
         nome: tarefa.nome,
         descricao: tarefa.descricao,
-        data: new Date(tarefa.data).toISOString(),
+        data: dataCorrigida.toISOString(),
         status: tarefa.status,
         usuarioId: this.usuarioId
-      }
+      };
 
       this.tarefaService.cadastrarTarefa(objetoTarefa).subscribe({
         next: (response) => {

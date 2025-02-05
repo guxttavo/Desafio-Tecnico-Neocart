@@ -49,7 +49,7 @@ export class EditarTarefaComponent implements OnInit {
 
   carregarDadosTarefa() {
     if (this.data) {
-      const dataFormatada = this.formatarData(this.data.data); // Chama a função de formatação
+      const dataFormatada = this.formatarData(this.data.data);
       this.form.patchValue({
         id: this.data.id,
         nome: this.data.nome,
@@ -63,8 +63,12 @@ export class EditarTarefaComponent implements OnInit {
   formatarData(data: string): string {
     if (!data) return '';
     const dataObj = new Date(data);
+
+    dataObj.setDate(dataObj.getDate() - 1);
+
     return dataObj.toISOString().split('T')[0];
   }
+
 
   salvarTarefa(): void {
     if (this.form.valid) {
