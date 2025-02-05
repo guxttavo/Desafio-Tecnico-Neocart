@@ -1,74 +1,66 @@
-/* Definindo o tamanho máximo do formulário e centralizando ele */
 form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Estilizando os campos do formulário */
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 20px; /* Espaçamento entre os campos */
-  }
-  
-  mat-label {
-    font-weight: bold;
-  }
-  
-  /* Estilizando os botões */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-label {
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  width: 48%;
+}
+
+button[type="submit"] {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+button[type="submit"]:disabled {
+  background-color: #b0bec5;
+  color: #fff;
+}
+
+button[type="button"] {
+  background-color: #f1f1f1;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+
+button[type="button"]:hover {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
   .buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
-  
+
   button {
-    width: 48%; /* Botões com largura igual */
+    width: 100%;
   }
-  
-  /* Estilos para o botão Salvar (com cor primária) */
-  button[type="submit"] {
-    background-color: #1976d2; /* Cor padrão do Angular Material */
-    color: #fff;
-  }
-  
-  button[type="submit"]:disabled {
-    background-color: #b0bec5; /* Cor mais suave quando o botão estiver desabilitado */
-    color: #fff;
-  }
-  
-  /* Estilos para o botão Cancelar */
-  button[type="button"] {
-    background-color: #f1f1f1;
-    color: #1976d2;
-    border: 1px solid #1976d2;
-  }
-  
-  button[type="button"]:hover {
-    background-color: #1976d2;
-    color: #fff;
-  }
-  
-  /* Adicionando um pouco de espaçamento ao redor do formulário */
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  /* Melhorando o espaçamento para dispositivos móveis */
-  @media (max-width: 600px) {
-    .buttons {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    button {
-      width: 100%; /* Botões com largura total em telas menores */
-    }
-  }
-  
+}

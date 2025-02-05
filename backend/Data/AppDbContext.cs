@@ -1,7 +1,6 @@
 using Data.Configurations;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Data
 {

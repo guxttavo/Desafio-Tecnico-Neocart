@@ -1,4 +1,3 @@
-
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -68,7 +67,6 @@ export class EditarTarefaComponent implements OnInit {
 
     return dataObj.toISOString().split('T')[0];
   }
-
 
   salvarTarefa(): void {
     if (this.form.valid) {

@@ -5,8 +5,8 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  width: calc(33% - 16px); /* A largura do card foi ajustada para 1/3 */
-  min-width: 250px; /* Garantindo um tamanho mínimo maior */
+  width: calc(33% - 16px); 
+  min-width: 250px; 
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
@@ -114,7 +114,7 @@ button.mat-outline-button:hover {
 
 .carro-list h2 {
   text-align: center;
-  width: 100%; /* Faz o h2 ocupar toda a largura para centralizar o texto */
+  width: 100%;
   font-size: 1.5rem;
   font-weight: bold;
   margin: 20px 0;

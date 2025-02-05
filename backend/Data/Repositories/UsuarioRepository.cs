@@ -1,4 +1,4 @@
-namespace api.Repositories
+namespace Repositories
 {
     public class UsuarioRepository
     {

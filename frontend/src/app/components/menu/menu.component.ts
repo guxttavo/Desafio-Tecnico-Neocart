@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   usuarioLogado: boolean = false;
   nomeUsuario = sessionStorage.getItem("usuario-nome")?.split(' ')[0] || '';
-  usuarioId: number | null = Number(sessionStorage.getItem("usuario-id")) || null; // Correção aqui
+  usuarioId: number | null = Number(sessionStorage.getItem("usuario-id")) || null; 
 
 
   constructor(

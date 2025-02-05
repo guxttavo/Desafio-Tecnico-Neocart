@@ -23,7 +23,7 @@ export class CadastrarUsuarioComponent {
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(1)]],
       confirmarSenha: ['', Validators.required]
-    }, { validator: this.mustMatch('senha', 'confirmarSenha') });
+    }, { validator: this.senhasCoincidir('senha', 'confirmarSenha') });
   }
 
   cadastrarUsuario() {
@@ -35,7 +35,6 @@ export class CadastrarUsuarioComponent {
         email: usuario.email,
         senha: usuario.senha,
       }
-      
 
       this.usuarioService.cadastrarUsuario(objetoUsuario).subscribe(
         {
@@ -54,17 +53,17 @@ export class CadastrarUsuarioComponent {
     }
   }
 
-  mustMatch(controlName: string, matchingControlName: string) {
+  senhasCoincidir(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
 
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
+      if (matchingControl.errors && !matchingControl.errors['senhasCoincidir']) {
         return;
       }
 
       if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
+        matchingControl.setErrors({ senhasCoincidir: true });
       } else {
         matchingControl.setErrors(null);
       }

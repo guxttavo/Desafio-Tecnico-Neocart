@@ -5,9 +5,7 @@
     </button>
   </div>
 
-  <!-- Verifica se o usuário está logado -->
   <div *ngIf="usuarioLogado; else notLoggedIn">
-    <!-- Tarefas Pendentes -->
     <div class="carro-list">
       <h2>Tarefas Pendentes</h2>
       <div *ngFor="let tarefa of tarefasPendentes" class="carro-card mat-elevation-z4">
@@ -34,7 +32,6 @@
       </div>
     </div>
 
-    <!-- Tarefas em Andamento -->
     <div class="carro-list">
       <h2>Tarefas em Andamento</h2>
       <div *ngFor="let tarefa of tarefasEmAndamento" class="carro-card mat-elevation-z4">
@@ -61,7 +58,6 @@
       </div>
     </div>
 
-    <!-- Tarefas Concluídas -->
     <div class="carro-list">
       <h2>Tarefas Concluídas</h2>
       <div *ngFor="let tarefa of tarefasConcluidas" class="carro-card mat-elevation-z4">
@@ -89,7 +85,6 @@
     </div>
   </div>
 
-  <!-- Caso o usuário não esteja logado -->
   <ng-template #notLoggedIn>
     <div class="alerta">
       <h1>Para ver e cadastrar suas tarefas você precisa estar logado!</h1>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import iziToast from 'izitoast';
 import { loginService } from 'src/app/services/login.service';
 
 @Component({

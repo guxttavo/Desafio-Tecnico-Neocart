@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import iziToast from 'izitoast';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TarefaService } from 'src/app/services/tarefa.service';
 import { UsuarioService } from 'src/app/services/usuario.service';

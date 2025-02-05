@@ -1,66 +1,61 @@
 <div class="alinhamento">
-    <div class="custom-container p-4 mt-1 bg-light rounded">
-      <h2 class="text-center" style="font-size: 1.8rem;">Cadastro de Usuário</h2>
-      <form [formGroup]="form" (ngSubmit)="cadastrarUsuario()">
-        <div class="row mb-3">
-          <!-- Nome -->
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Nome</mat-label>
-              <input matInput type="text" id="nome" formControlName="nome" />
-              <mat-error *ngIf="form.get('nome')?.invalid && form.get('nome')?.touched">
-                <small *ngIf="form.get('nome')?.errors?.['required']">Nome é obrigatório</small>
-                <small *ngIf="form.get('nome')?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres.</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <!-- Email -->
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Email</mat-label>
-              <input matInput type="email" id="email" formControlName="email" />
-              <mat-error *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
-                <small *ngIf="form.get('email')?.errors?.['required']">Email é obrigatório</small>
-                <small *ngIf="form.get('email')?.errors?.['email']">O email precisa ser válido</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <!-- Senha -->
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Senha</mat-label>
-              <input matInput type="password" id="senha" formControlName="senha" />
-              <mat-error *ngIf="form.get('senha')?.invalid && form.get('senha')?.touched">
-                <small *ngIf="form.get('senha')?.errors?.['required']">Senha é obrigatória</small>
-                <small *ngIf="form.get('senha')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
-  
-          <!-- Confirmar Senha -->
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Confirmar Senha</mat-label>
-              <input matInput type="password" id="confirmarSenha" formControlName="confirmarSenha" />
-              <mat-error *ngIf="form.get('confirmarSenha')?.invalid && form.get('confirmarSenha')?.touched">
-                <small *ngIf="form.get('confirmarSenha')?.errors?.['required']">Confirmar senha é obrigatório</small>
-                <small *ngIf="form.get('confirmarSenha')?.errors?.['Mustmatch']">As senhas não coincidem</small>
-              </mat-error>
-            </mat-form-field>
-          </div>
+  <div class="custom-container p-4 mt-1 bg-light rounded">
+    <h2 class="text-center" style="font-size: 1.8rem;">Cadastro de Usuário</h2>
+    <form [formGroup]="form" (ngSubmit)="cadastrarUsuario()">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" id="nome" formControlName="nome" />
+            <mat-error *ngIf="form.get('nome')?.invalid && form.get('nome')?.touched">
+              <small *ngIf="form.get('nome')?.errors?.['required']">Nome é obrigatório</small>
+              <small *ngIf="form.get('nome')?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres.</small>
+            </mat-error>
+          </mat-form-field>
         </div>
-  
-        <div class="d-flex justify-content-center mt-4">
-          <button mat-raised-button color="primary" type="submit" class="mx-2">
-            Cadastrar
-          </button>
-          <a [routerLink]="['/login']" mat-button class="mx-2">
-            Voltar
-          </a>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" id="email" formControlName="email" />
+            <mat-error *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+              <small *ngIf="form.get('email')?.errors?.['required']">Email é obrigatório</small>
+              <small *ngIf="form.get('email')?.errors?.['email']">O email precisa ser válido</small>
+            </mat-error>
+          </mat-form-field>
         </div>
-      </form>
-    </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" id="senha" formControlName="senha" />
+            <mat-error *ngIf="form.get('senha')?.invalid && form.get('senha')?.touched">
+              <small *ngIf="form.get('senha')?.errors?.['required']">Senha é obrigatória</small>
+              <small *ngIf="form.get('senha')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Confirmar Senha</mat-label>
+            <input matInput type="password" id="confirmarSenha" formControlName="confirmarSenha" />
+            <mat-error *ngIf="form.get('confirmarSenha')?.invalid && form.get('confirmarSenha')?.touched">
+              <small *ngIf="form.get('confirmarSenha')?.errors?.['required']">Confirmar senha é obrigatório</small>
+              <small *ngIf="form.get('confirmarSenha')?.errors?.['senhasCoincidir']">As senhas não coincidem</small>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <button mat-raised-button color="primary" type="submit" class="mx-2">
+          Cadastrar
+        </button>
+        <a [routerLink]="['/login']" mat-button class="mx-2">
+          Voltar
+        </a>
+      </div>
+    </form>
   </div>
-  
+</div>
