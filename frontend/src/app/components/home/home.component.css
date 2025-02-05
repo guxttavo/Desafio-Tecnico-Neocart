@@ -5,14 +5,13 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  width: calc(33.33% - 16px);
-  box-sizing: border-box;
-  margin-bottom: 16px;
+  width: calc(50% - 16px); /* Aumentando a largura dos cards */
+  min-width: 300px; /* Garantindo um tamanho mínimo maior */
+  padding: 20px; /* Adicionando mais espaço interno */
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: calc(33.33% - 16px); /* Define a largura dos cards */
-  min-width: 250px; /* Evita que fiquem muito pequenos */
 }
 
 .alinhamento {
@@ -109,7 +108,8 @@ button.mat-outline-button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: flex-start; /* Alinha os cards da esquerda para a direita */
+  justify-content: flex-start; 
+  margin-left: 5%;
 }
 
 .carro-list h2 {

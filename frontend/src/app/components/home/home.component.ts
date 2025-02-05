@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   tarefas: tarefa[] = [];
 
-  tarefasPorData: { [key: string]: tarefa[] } = {};
-
   constructor(
     public dialog: MatDialog,
     public tarefaService: TarefaService,
@@ -32,7 +30,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarTarefas();
-
   }
 
   initializeForm() {
@@ -41,17 +38,14 @@ export class HomeComponent implements OnInit {
   listarTarefas(): void {
     this.tarefaService.listarTarefa().subscribe({
       next: (tarefas) => {
-        this.tarefas = tarefas.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
-
-        this.tarefasPorData = this.tarefas.reduce((acc, tarefa) => {
-          const dataFormatada = new Date(tarefa.data).toLocaleDateString();
-          if (!acc[dataFormatada]) {
-            acc[dataFormatada] = [];
-          }
-          acc[dataFormatada].push(tarefa);
-          return acc;
-        }, {} as { [key: string]: tarefa[] });
-
+        if (!tarefas || tarefas.length === 0) {
+          iziToast.info({
+            title: 'Aviso',
+            message: 'Nenhuma tarefa encontrada.',
+          });
+          return;
+        }
+        this.tarefas = tarefas;
       },
       error: (erro) => {
         console.error('Erro ao carregar tarefas:', erro);
@@ -62,6 +56,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
 
   abrirModalCadastro(): void {
     const dialogRef = this.dialog.open(CadastrarTarefaComponent, {
@@ -96,7 +91,7 @@ export class HomeComponent implements OnInit {
             title: 'Sucesso',
             message: 'Tarefa excluída com sucesso!',
           });
-          this.listarTarefas(); 
+          this.listarTarefas();
         },
         error: (erro) => {
           console.error('Erro ao excluir tarefa:', erro);
