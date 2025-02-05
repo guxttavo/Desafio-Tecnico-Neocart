@@ -11,6 +11,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: calc(33.33% - 16px); /* Define a largura dos cards */
+  min-width: 250px; /* Evita que fiquem muito pequenos */
 }
 
 .alinhamento {
@@ -104,7 +106,12 @@ button.mat-outline-button:hover {
 }
 
 .carro-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start; /* Alinha os cards da esquerda para a direita */
 }
+
 
 @media (max-width: 768px) {
   .carro-card {

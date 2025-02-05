@@ -18,7 +18,8 @@ namespace Core.Models
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public StatusTarefa Status { get; set; }
         public int UsuarioId { get; set; }
-        [JsonIgnore] 
+
+        [JsonIgnore]
         public Usuario? Usuario { get; set; }
     }
 }

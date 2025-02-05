@@ -6,8 +6,8 @@ import { TarefaService } from 'src/app/services/tarefa.service';
 
 export enum Status {
   Pendente = 'Pendente',
-  EmAndamento = 'Em Andamento',
-  Concluida = 'Concluída'
+  EmAndamento = 'EmAndamento',
+  Concluida = 'Concluida'
 }
 
 @Component({
