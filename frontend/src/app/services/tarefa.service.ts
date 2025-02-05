@@ -30,6 +30,6 @@ export class TarefaService {
     }
 
     listarTarefa(): Observable<tarefa[]> {
-        return this.http.get<tarefa[]>(this.apiUrl);
+        return this.http.get<tarefa[]>(`${this.apiUrl}/listarTarefas`);
     }
 }

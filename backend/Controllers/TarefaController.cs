@@ -15,10 +15,14 @@ namespace Controllers
             _tarefaService = tarefaService;
         }
 
-        [HttpGet]
+        [HttpGet("listarTarefas")]
         public async Task<ActionResult<IEnumerable<Tarefa>>> ListarTarefas()
         {
             var tarefas = await _tarefaService.ListarTarefas();
+
+            if (tarefas == null || !tarefas.Any())
+                return NotFound("Nenhuma tarefa encontrada.");
+
             return Ok(tarefas);
         }
 
@@ -36,6 +40,7 @@ namespace Controllers
         public async Task<ActionResult<Tarefa>> BuscarTarefaPorId(int id)
         {
             var tarefa = await _tarefaService.BuscarTarefaPorId(id);
+
             if (tarefa == null)
                 return NotFound("Tarefa não encontrada.");
 
@@ -48,6 +53,9 @@ namespace Controllers
             if (id != tarefa.Id)
                 return BadRequest("O ID da tarefa não corresponde ao parâmetro informado.");
 
+            if (tarefa == null)
+                return BadRequest("Os dados da tarefa são inválidos.");
+
             var tarefaAtualizada = await _tarefaService.EditarTarefa(tarefa);
             if (tarefaAtualizada == null)
                 return NotFound("Tarefa não encontrada.");
@@ -58,7 +66,13 @@ namespace Controllers
         [HttpDelete("excluirTarefa/{id}")]
         public async Task<IActionResult> ExcluirTarefa(int id)
         {
+            var tarefaExistente = await _tarefaService.BuscarTarefaPorId(id);
+
+            if (tarefaExistente == null)
+                return NotFound("Tarefa não encontrada.");
+
             var tarefaExcluida = await _tarefaService.ExcluirTarefa(id);
+
             if (!tarefaExcluida)
                 return NotFound("Tarefa não encontrada.");
 

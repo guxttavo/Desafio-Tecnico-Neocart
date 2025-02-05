@@ -1,7 +1,7 @@
-using backend.Core.Service;
 using backend.Core.DTO;
 using backend.Core.Interfaces;
 using backend.Core.Models;
+using backend.Core.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +14,7 @@ namespace backend.Controllers
         private readonly TokenService _tokenService;
         private readonly IUsuarioService _usuarioService;
 
-        public AuthController(
-            TokenService tokenService,
-            IUsuarioService usuarioService
-        )
+        public AuthController(TokenService tokenService, IUsuarioService usuarioService)
         {
             _tokenService = tokenService;
             _usuarioService = usuarioService;
