@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
   usuarioId = Number(sessionStorage.getItem("usuario-id"));
   form: FormGroup = new FormGroup({});
   tarefas: tarefa[] = [];
+  tarefasPendentes: tarefa[] = [];
+  tarefasEmAndamento: tarefa[] = [];
+  tarefasConcluidas: tarefa[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -45,7 +48,11 @@ export class HomeComponent implements OnInit {
           });
           return;
         }
+        
         this.tarefas = tarefas;
+        this.tarefasPendentes = tarefas.filter(tarefa => tarefa.status === 'Pendente');
+        this.tarefasEmAndamento = tarefas.filter(tarefa => tarefa.status === 'EmAndamento');
+        this.tarefasConcluidas = tarefas.filter(tarefa => tarefa.status === 'Concluida');
       },
       error: (erro) => {
         console.error('Erro ao carregar tarefas:', erro);
@@ -56,7 +63,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
 
   abrirModalCadastro(): void {
     const dialogRef = this.dialog.open(CadastrarTarefaComponent, {
