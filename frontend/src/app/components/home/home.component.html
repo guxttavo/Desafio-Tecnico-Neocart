@@ -2,11 +2,11 @@
   <div class="toolbar mt-3">
     <button mat-raised-button color="primary" class="mb-3" (click)="abrirModalCadastro()">
       Cadastrar uma tarefa
-    </button>    
+    </button>
   </div>
   <div class="carro-list">
     <div *ngFor="let data of tarefasPorData | keyvalue">
-      <h2>{{ data.key }}</h2> 
+      <h2>{{ data.key }}</h2>
 
       <div *ngFor="let tarefa of data.value" class="carro-card mat-elevation-z4">
         <div class="carro-header">
@@ -15,8 +15,11 @@
         <div class="carro-body">
           <p><strong>Descrição:</strong> {{ tarefa.descricao }}</p>
           <div class="buttons">
-            <button mat-raised-button color="primary"  (click)="abrirModalEditar(tarefa)">Editar</button>
-            <button mat-stroked-button class="excluir">Excluir</button>
+            <button mat-raised-button color="primary" (click)="abrirModalEditar(tarefa)">Editar</button>
+            <button mat-stroked-button class="excluir" *ngIf="tarefa.id !== undefined && tarefa.id !== null"
+              (click)="excluirTarefa(tarefa.id)">
+              Excluir
+            </button>
             <button mat-outline-button class="favoritar">Favoritar</button>
           </div>
         </div>

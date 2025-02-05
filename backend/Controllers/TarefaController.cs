@@ -44,7 +44,6 @@ namespace Controllers
             return Ok(tarefa);
         }
 
-
         [HttpPut("editarTarefa/{id}")]
         public async Task<ActionResult<Tarefa>> EditarTarefa(int id, [FromBody] Tarefa tarefa)
         {
@@ -56,6 +55,16 @@ namespace Controllers
                 return NotFound("Tarefa não encontrada.");
 
             return Ok(tarefaAtualizada);
+        }
+
+        [HttpDelete("excluirTarefa/{id}")]
+        public async Task<IActionResult> ExcluirTarefa(int id)
+        {
+            var tarefaExcluida = await _tarefaService.ExcluirTarefa(id);
+            if (!tarefaExcluida)
+                return NotFound("Tarefa não encontrada.");
+
+            return NoContent();
         }
     }
 }

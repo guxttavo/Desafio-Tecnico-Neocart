@@ -47,5 +47,16 @@ namespace backend.Core.Service
 
             return tarefaExistente;
         }
+
+        public async Task<bool> ExcluirTarefa(int id)
+        {
+            var tarefa = await _context.Tarefas.FindAsync(id);
+            if (tarefa == null)
+                return false;
+
+            _context.Tarefas.Remove(tarefa);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

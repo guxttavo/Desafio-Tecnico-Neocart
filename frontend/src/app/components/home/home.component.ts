@@ -87,4 +87,26 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  excluirTarefa(id: number): void {
+    if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
+      this.tarefaService.excluirTarefa(id).subscribe({
+        next: () => {
+          iziToast.success({
+            title: 'Sucesso',
+            message: 'Tarefa excluída com sucesso!',
+          });
+          this.listarTarefas(); 
+        },
+        error: (erro) => {
+          console.error('Erro ao excluir tarefa:', erro);
+          iziToast.error({
+            title: 'Erro',
+            message: 'Não foi possível excluir a tarefa.',
+          });
+        }
+      });
+    }
+  }
+
 }
