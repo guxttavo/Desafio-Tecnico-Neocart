@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
   }
 
   private rotaPublica(url: string): boolean {
-    const rotasPublicas = ['/carro/categoria', '/home', '/usuario']
+    const rotasPublicas = ['/card/categoria', '/home', '/usuario']
 
     const baseUrl = url;
 

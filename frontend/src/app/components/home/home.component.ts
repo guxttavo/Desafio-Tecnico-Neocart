@@ -54,10 +54,12 @@ export class HomeComponent implements OnInit {
           return;
         }
 
-        this.tarefas = tarefas;
-        this.tarefasPendentes = tarefas.filter(tarefa => tarefa.status === 'Pendente');
-        this.tarefasEmAndamento = tarefas.filter(tarefa => tarefa.status === 'EmAndamento');
-        this.tarefasConcluidas = tarefas.filter(tarefa => tarefa.status === 'Concluida');
+        const tarefasUsuario = tarefas.filter(tarefa => tarefa.usuarioId === this.usuarioId);
+
+        this.tarefas = tarefasUsuario;
+        this.tarefasPendentes = tarefasUsuario.filter(tarefa => tarefa.status === 'Pendente');
+        this.tarefasEmAndamento = tarefasUsuario.filter(tarefa => tarefa.status === 'EmAndamento');
+        this.tarefasConcluidas = tarefasUsuario.filter(tarefa => tarefa.status === 'Concluida');
       },
       error: (erro) => {
         console.error('Erro ao carregar tarefas:', erro);
