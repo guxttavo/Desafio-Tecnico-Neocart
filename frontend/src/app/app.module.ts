@@ -28,13 +28,15 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CadastrarTarefaComponent } from './components/tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 import { CadastrarUsuarioComponent } from './components/usuario/cadastrar-usuario/cadastrar-usuario.component';
+import { EditarTarefaComponent } from './components/tarefa/editar-tarefa/editar-tarefa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     CadastrarTarefaComponent,
-    CadastrarUsuarioComponent
+    CadastrarUsuarioComponent,
+    EditarTarefaComponent
   ],
   imports: [
     BrowserModule,

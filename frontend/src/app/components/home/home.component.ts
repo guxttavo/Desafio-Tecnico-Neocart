@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TarefaService } from 'src/app/services/tarefa.service';
 import { tarefa } from 'src/app/interfaces/tarefa';
 import { CadastrarTarefaComponent } from '../tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
+import { EditarTarefaComponent } from '../tarefa/editar-tarefa/editar-tarefa.component';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
         this.tarefas = tarefas.sort((a, b) => new Date(a.data).getTime() - new Date(b.data).getTime());
 
         this.tarefasPorData = this.tarefas.reduce((acc, tarefa) => {
-          const dataFormatada = new Date(tarefa.data).toLocaleDateString(); // Converte para string legível
+          const dataFormatada = new Date(tarefa.data).toLocaleDateString();
           if (!acc[dataFormatada]) {
             acc[dataFormatada] = [];
           }
@@ -51,7 +52,6 @@ export class HomeComponent implements OnInit {
           return acc;
         }, {} as { [key: string]: tarefa[] });
 
-        console.log('Tarefas organizadas por data:', this.tarefasPorData);
       },
       error: (erro) => {
         console.error('Erro ao carregar tarefas:', erro);
@@ -73,6 +73,18 @@ export class HomeComponent implements OnInit {
         console.log('Tarefa cadastrada:', result);
       }
     });
+  }
 
+  abrirModalEditar(tarefa: tarefa): void {
+    const dialogRef = this.dialog.open(EditarTarefaComponent, {
+      width: '400px',
+      data: tarefa
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Tarefa Editada:', result);
+      }
+    });
   }
 }

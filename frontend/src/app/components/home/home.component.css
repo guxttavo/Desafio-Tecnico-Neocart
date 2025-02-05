@@ -112,6 +112,16 @@ button.mat-outline-button:hover {
   justify-content: flex-start; /* Alinha os cards da esquerda para a direita */
 }
 
+.carro-list h2 {
+  text-align: center;
+  width: 100%; /* Faz o h2 ocupar toda a largura para centralizar o texto */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #333;
+}
+
+
 
 @media (max-width: 768px) {
   .carro-card {

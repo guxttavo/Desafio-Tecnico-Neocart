@@ -25,5 +25,10 @@ namespace backend.Core.Service
             await _context.SaveChangesAsync();
             return tarefa;
         }
+
+        public async Task<Tarefa> BuscarTarefaPorId(int id) 
+        {
+            return await _context.Tarefas.FindAsync(id);
+        }
     }
 }

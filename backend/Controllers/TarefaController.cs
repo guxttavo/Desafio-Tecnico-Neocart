@@ -1,8 +1,8 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using backend.Core.Interfaces;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Controllers
 {
@@ -32,6 +32,16 @@ namespace Controllers
 
             var novaTarefa = await _tarefaService.CadastrarTarefa(tarefa);
             return CreatedAtAction(nameof(ListarTarefas), new { id = novaTarefa.Id }, novaTarefa);
+        }
+
+        [HttpGet("buscarTarefaPorId/{id}")]
+        public async Task<ActionResult<Tarefa>> BuscarTarefaPorId(int id)
+        {
+            var tarefa = await _tarefaService.BuscarTarefaPorId(id);
+            if (tarefa == null)
+                return NotFound("Tarefa não encontrada.");
+
+            return Ok(tarefa);
         }
     }
 }

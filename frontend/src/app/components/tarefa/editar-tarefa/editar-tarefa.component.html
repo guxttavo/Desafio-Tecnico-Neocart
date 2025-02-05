@@ -1,0 +1,34 @@
+<h2>Editar Tarefa</h2>
+
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  <mat-form-field class="full-width">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="nome" required />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput formControlName="descricao" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Data</mat-label>
+    <input matInput formControlName="data" type="date" required />
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status" required>
+      <mat-option *ngFor="let status of statusEnum" [value]="status">
+        {{ status }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="buttons">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Salvar
+    </button>
+    <button mat-button type="button" (click)="fechar()">Cancelar</button>
+  </div>
+</form>

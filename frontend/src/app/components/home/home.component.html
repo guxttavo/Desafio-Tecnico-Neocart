@@ -15,7 +15,7 @@
         <div class="carro-body">
           <p><strong>Descrição:</strong> {{ tarefa.descricao }}</p>
           <div class="buttons">
-            <button mat-raised-button color="primary">Editar</button>
+            <button mat-raised-button color="primary"  (click)="abrirModalEditar(tarefa)">Editar</button>
             <button mat-stroked-button class="excluir">Excluir</button>
             <button mat-outline-button class="favoritar">Favoritar</button>
           </div>

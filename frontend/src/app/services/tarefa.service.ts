@@ -16,6 +16,15 @@ export class TarefaService {
         return this.http.post(`${this.apiUrl + "/cadastrarTarefa"}`, tarefa);
 
     }
+
+    editarTarefa(tarefa: tarefa) {
+        return this.http.put(`${this.apiUrl}/editarTarefa/${tarefa.id}`, tarefa);
+    }
+
+    buscarTarefaPorId(id: number): Observable<tarefa> {
+        return this.http.get<tarefa>(`${this.apiUrl}/buscarTarefaPorId/${id}`);
+    }
+
     listarTarefa(): Observable<tarefa[]> {
         return this.http.get<tarefa[]>(this.apiUrl);
     }
