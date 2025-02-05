@@ -24,5 +24,15 @@ namespace backend.Core.Service
         {
             return await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
         }
+
+        public async Task<Usuario> BuscarUsuarioPorIdAsync(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+            {
+                throw new Exception("Usuário não encontrado");
+            }
+            return usuario;
+        }
     }
 }

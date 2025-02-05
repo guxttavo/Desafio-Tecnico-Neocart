@@ -6,5 +6,6 @@ namespace backend.Core.Interfaces
     {
         Task CadastrarAsync(Usuario usuario);
         Task<Usuario> BuscarUsuarioPorEmailAsync(string email);
+        Task<Usuario> BuscarUsuarioPorIdAsync(int id); 
     }
 }

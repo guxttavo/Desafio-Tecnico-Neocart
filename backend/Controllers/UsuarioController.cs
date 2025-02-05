@@ -20,7 +20,7 @@ namespace Controllers
         {
             if (usuario == null)
             {
-                return BadRequest(); 
+                return BadRequest();
             }
 
             try
@@ -30,7 +30,21 @@ namespace Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500); 
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet("buscarPorId/{id}")]
+        public async Task<IActionResult> BuscarPorId(int id)
+        {
+            try
+            {
+                var usuario = await _usuarioService.BuscarUsuarioPorIdAsync(id);
+                return Ok(usuario);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
         }
     }
