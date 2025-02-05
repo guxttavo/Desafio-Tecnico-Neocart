@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { tarefa } from 'src/app/interfaces/tarefa';
@@ -15,8 +15,9 @@ export enum Status {
   templateUrl: './cadastrar-tarefa.component.html',
   styleUrls: ['./cadastrar-tarefa.component.css']
 })
-export class CadastrarTarefaComponent {
-  form: FormGroup;
+export class CadastrarTarefaComponent implements OnInit {
+  
+  form!: FormGroup;
   statusEnum = Object.values(Status);
   usuarioId = Number(sessionStorage.getItem("usuario-id"));
 
@@ -24,7 +25,13 @@ export class CadastrarTarefaComponent {
     private dialogRef: MatDialogRef<CadastrarTarefaComponent>,
     private fb: FormBuilder,
     public tarefaService: TarefaService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    this.inicializarFormulario();
+  }
+
+  private inicializarFormulario(): void {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       descricao: ['', Validators.required],

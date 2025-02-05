@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import iziToast from 'izitoast';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 import { TarefaService } from 'src/app/services/tarefa.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { tarefa } from 'src/app/interfaces/tarefa';
 import { CadastrarTarefaComponent } from '../tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 import { EditarTarefaComponent } from '../tarefa/editar-tarefa/editar-tarefa.component';
+import { TarefasFavoritadasComponent } from '../tarefa/tarefas-favoritadas/tarefas-favoritadas.component';
 
 @Component({
   selector: 'app-home',
@@ -29,8 +29,6 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     public tarefaService: TarefaService,
     public usuarioService: UsuarioService,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -38,9 +36,6 @@ export class HomeComponent implements OnInit {
     if (this.usuarioLogado) {
       this.listarTarefas();
     }
-  }
-
-  initializeForm() {
   }
 
   listarTarefas(): void {
@@ -96,6 +91,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  abrirModalTarefasFavoritadas(): void {
+    const tarefasFavoritadas = JSON.parse(localStorage.getItem('tarefasFavoritadas') || '[]');
+
+    this.dialog.open(TarefasFavoritadasComponent, {
+      width: '400px',
+      data: tarefasFavoritadas
+    });
+  }
+
   excluirTarefa(id: number): void {
     if (confirm("Tem certeza que deseja excluir esta tarefa?")) {
       this.tarefaService.excluirTarefa(id).subscribe({
@@ -117,4 +121,26 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  favoritarTarefa(tarefa: tarefa) {
+    let tarefasFavoritadas = JSON.parse(localStorage.getItem('tarefasFavoritadas') || '[]');
+
+    const tarefaExistente = tarefasFavoritadas.find((item: tarefa) => item.id === tarefa.id);
+
+    if (!tarefaExistente) {
+      tarefasFavoritadas.push(tarefa);
+      localStorage.setItem('tarefasFavoritadas', JSON.stringify(tarefasFavoritadas));
+
+      iziToast.success({
+        title: 'Favorito',
+        message: `${tarefa.nome} foi adicionado aos seus favoritos.`,
+        position: 'topRight'
+      });
+    } else {
+      iziToast.info({
+        title: 'Info',
+        message: `${tarefa.nome} já está nos seus favoritos.`,
+        position: 'topRight'
+      });
+    }
+  }
 }

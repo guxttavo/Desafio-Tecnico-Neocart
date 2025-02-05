@@ -29,6 +29,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { CadastrarTarefaComponent } from './components/tarefa/cadastrar-tarefa/cadastrar-tarefa.component';
 import { CadastrarUsuarioComponent } from './components/usuario/cadastrar-usuario/cadastrar-usuario.component';
 import { EditarTarefaComponent } from './components/tarefa/editar-tarefa/editar-tarefa.component';
+import { TarefasFavoritadasComponent } from './components/tarefa/tarefas-favoritadas/tarefas-favoritadas.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EditarTarefaComponent } from './components/tarefa/editar-tarefa/editar-
     MenuComponent,
     CadastrarTarefaComponent,
     CadastrarUsuarioComponent,
-    EditarTarefaComponent
+    EditarTarefaComponent,
+    TarefasFavoritadasComponent
   ],
   imports: [
     BrowserModule,

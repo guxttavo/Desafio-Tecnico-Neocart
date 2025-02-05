@@ -1,0 +1,68 @@
+/* Modal container styling */
+.modal-container {
+    width: 500px; /* Tamanho fixo para o modal */
+    height: auto; /* Altura automática conforme o conteúdo */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o modal na tela */
+    z-index: 1000;
+    overflow-y: auto;
+  }
+  
+  /* Modal heading */
+  .modal-container h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Card styling */
+  .card-card {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .card-header h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+  }
+  
+  .card-body p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Button styling */
+  button {
+    margin-top: 10px;
+  }
+  
+  /* Close button */
+  button.mat-button {
+    margin-top: 20px;
+    background-color: #f44336; /* Red color */
+    color: white;
+  }
+  
+  /* Optional: Add a semi-transparent overlay behind the modal */
+  .modal-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  

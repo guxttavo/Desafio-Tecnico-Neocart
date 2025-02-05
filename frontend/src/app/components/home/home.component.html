@@ -1,7 +1,10 @@
 <div class="alinhamento">
   <div *ngIf="usuarioLogado" class="toolbar mt-3">
     <button mat-raised-button color="primary" class="mb-3" (click)="abrirModalCadastro()">
-      Cadastrar uma tarefa
+      Cadastrar uma Tarefa
+    </button>
+    <button mat-raised-button color="primary" class="mb-3" (click)="abrirModalTarefasFavoritadas()">
+      Tarefas Favoritadas
     </button>
   </div>
 
@@ -25,7 +28,9 @@
               (click)="excluirTarefa(tarefa.id)">
               Excluir
             </button>
-            <button mat-outline-button class="favoritar">Favoritar</button>
+            <button mat-outline-button class="favoritar" (click)="favoritarTarefa(tarefa)">
+              Favoritar
+            </button>
           </div>
         </div>
       </div>
@@ -50,7 +55,9 @@
               (click)="excluirTarefa(tarefa.id)">
               Excluir
             </button>
-            <button mat-outline-button class="favoritar">Favoritar</button>
+            <button mat-outline-button class="favoritar" (click)="favoritarTarefa(tarefa)">
+              Favoritar
+            </button>
           </div>
         </div>
       </div>
@@ -75,7 +82,9 @@
               (click)="excluirTarefa(tarefa.id)">
               Excluir
             </button>
-            <button mat-outline-button class="favoritar">Favoritar</button>
+            <button mat-outline-button class="favoritar" (click)="favoritarTarefa(tarefa)">
+              Favoritar
+            </button>
           </div>
         </div>
       </div>
