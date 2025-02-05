@@ -49,17 +49,25 @@ export class EditarTarefaComponent implements OnInit {
 
   carregarDadosTarefa() {
     if (this.data) {
+      const dataFormatada = this.formatarData(this.data.data); // Chama a função de formatação
       this.form.patchValue({
         id: this.data.id,
         nome: this.data.nome,
         descricao: this.data.descricao,
-        data: this.data.data,
+        data: dataFormatada,
         status: this.data.status
       });
     }
   }
 
-  salvar(): void {
+  formatarData(data: string): string {
+    if (!data) return '';
+    const dataObj = new Date(data); 
+    return dataObj.toISOString().split('T')[0]; 
+  }
+
+
+  salvarTarefa(): void {
     if (this.form.valid) {
       const tarefaEditada: tarefa = this.form.value;
 

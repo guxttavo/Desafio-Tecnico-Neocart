@@ -43,5 +43,19 @@ namespace Controllers
 
             return Ok(tarefa);
         }
+
+
+        [HttpPut("editarTarefa/{id}")]
+        public async Task<ActionResult<Tarefa>> EditarTarefa(int id, [FromBody] Tarefa tarefa)
+        {
+            if (id != tarefa.Id)
+                return BadRequest("O ID da tarefa não corresponde ao parâmetro informado.");
+
+            var tarefaAtualizada = await _tarefaService.EditarTarefa(tarefa);
+            if (tarefaAtualizada == null)
+                return NotFound("Tarefa não encontrada.");
+
+            return Ok(tarefaAtualizada);
+        }
     }
 }

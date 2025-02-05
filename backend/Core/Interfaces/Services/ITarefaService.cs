@@ -6,6 +6,7 @@ namespace backend.Core.Interfaces
     {
         Task<List<Tarefa>> ListarTarefas();
         Task<Tarefa> CadastrarTarefa(Tarefa tarefa);
-        Task<Tarefa> BuscarTarefaPorId(int id); 
+        Task<Tarefa> BuscarTarefaPorId(int id);
+        Task<Tarefa> EditarTarefa(Tarefa tarefa);
     }
 }

@@ -26,9 +26,27 @@ namespace backend.Core.Service
             return tarefa;
         }
 
-        public async Task<Tarefa> BuscarTarefaPorId(int id) 
+        public async Task<Tarefa> BuscarTarefaPorId(int id)
         {
             return await _context.Tarefas.FindAsync(id);
+        }
+
+        public async Task<Tarefa> EditarTarefa(Tarefa tarefa)
+        {
+            var tarefaExistente = await _context.Tarefas.FindAsync(tarefa.Id);
+            if (tarefaExistente == null)
+                return null;
+
+            tarefaExistente.Nome = tarefa.Nome;
+            tarefaExistente.Descricao = tarefa.Descricao;
+            tarefaExistente.Data = tarefa.Data;
+            tarefaExistente.Status = tarefa.Status;
+
+            tarefa.Data = DateTime.SpecifyKind(tarefa.Data, DateTimeKind.Utc);
+            _context.Tarefas.Update(tarefa);
+            await _context.SaveChangesAsync();
+
+            return tarefaExistente;
         }
     }
 }
